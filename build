@@ -1,0 +1,43 @@
+#!/bin/bash
+dir=$(dirname $(readlink -f ${0}))
+cat > Dockerfile <<EOF
+FROM ubuntu:15.04
+
+RUN apt-get -y update ;                         \
+    apt-get -y install openssh-server ;         \
+    apt-get -y install git bash ;               \
+    apt-get -y clean; apt-get -y autoclean ;    \
+    locale-gen en_US ;                          \
+    locale-gen en_US.UTF-8 ; 
+# Setting openssh
+RUN mkdir -p /etc/ssh /var/run/sshd ;
+RUN     sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config ;
+#RUN     ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N "";
+#RUN     ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N "";
+#RUN     ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N "";
+#RUN     ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""; 
+
+# Adding git user
+RUN adduser --system git ;                      \
+    mkdir -p /home/git/.ssh
+
+# Clearing and setting authorized ssh keys and hushlogin / motd
+RUN touch /home/git/.ssh/authorized_keys ;                                      \
+    echo $(cat ${HOME}/.ssh/id_ed25519.pub) >> /home/git/.ssh/authorized_keys ; \
+    echo $(cat ${HOME}/.ssh/id_rsa.pub) >> /home/git/.ssh/authorized_keys ;     \
+    touch /home/git/.hushlogin;                                                 \
+    chmod 700 /home/git/.ssh; chown git -R /home/git
+# ...
+
+# Updating shell to bash
+RUN sed -i s#/home/git:/bin/false#/home/git:/bin/bash# /etc/passwd ;    \
+    service sshd start || true || service sshd stop || true ;           \
+    service ssh start || true || service ssh stop || true ;
+
+# COPY entry /entry
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
+# CMD ["/entry"]
+EOF
+
+docker build --force-rm --rm --tag k8s-git-repo ${dir}
