@@ -8,8 +8,8 @@ Some of our workflows require a private on prem git repo.
 This beta test is to assist management of a distributable git repo
 with kubernetes.
 
-This iteration doesn't have enable a persistant data store, but could
-be persisted by using a node label and pin the instance to that repo.
+This iteration hasn't enabled a persistant data store, but could be
+persisted by using a node label and pin the instance to a node.
 
 A future version will support a persistant store.
 
