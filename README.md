@@ -38,7 +38,9 @@ chmod +x mkrepo
 
 ```
 #!/bin/bash
-repo=k8s-git-repo
+# Derive repo name from directory.  Override if the repo of this git
+# directory isn't the same as the directory's base name.
+repo=${dir##*/}
 host=k8s-git-repo
 
 # .ssh/config entry to enable simple access
