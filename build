@@ -21,10 +21,12 @@ RUN     sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/s
 RUN adduser --system git ;                      \
     mkdir -p /home/git/.ssh
 
+#    echo $(cat ${HOME}/.ssh/id_ed25519.pub) >> /home/git/.ssh/authorized_keys ; 
+#    echo $(cat ${HOME}/.ssh/id_rsa.pub) >> /home/git/.ssh/authorized_keys ;     
+
+
 # Clearing and setting authorized ssh keys and hushlogin / motd
 RUN touch /home/git/.ssh/authorized_keys ;                                      \
-    echo $(cat ${HOME}/.ssh/id_ed25519.pub) >> /home/git/.ssh/authorized_keys ; \
-    echo $(cat ${HOME}/.ssh/id_rsa.pub) >> /home/git/.ssh/authorized_keys ;     \
     touch /home/git/.hushlogin;                                                 \
     chmod 700 /home/git/.ssh; chown git -R /home/git
 # ...

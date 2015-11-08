@@ -1,5 +1,5 @@
 #!/bin/bash
-. scripts/credentials
+. ${dir}/scripts/credentials
 # The next incarnation will use a git repo pulled into the
 # jenkins home
 

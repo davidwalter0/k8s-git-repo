@@ -1,3 +1,6 @@
 /.cfg
+/Dockerfile
+/k8s-git-repo-secret.yaml
+/k8s-git-repo.tar
 /k8s-git-repo.tar.gz
 scripts/credentials

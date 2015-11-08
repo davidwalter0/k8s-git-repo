@@ -1,48 +1,9 @@
-# k8s-git-repo
-
-k8s-git-repo is a utility container and k8s service + replication
-controller definition.
-
-Some of our workflows require a private on prem git repo.
-
-This beta test is to assist management of a distributable git repo
-with kubernetes.
-
-This iteration hasn't enabled a persistant data store, but could be
-persisted by using a node label and pin the instance to a node.
-
-A future version will support a persistant store.
-
-```
-## test repo container name k8s-git-repo
-## For a docker based test . . .
-# .bashrc function for docker ip
-function docker-ip
-{
-    if [[ -n ${1} ]]; then
-        docker inspect --format='{{ .NetworkSettings.IPAddress }}' ${1}
-    else
-        echo usage: docker-ip cid
-    fi
-}
-```
-
-### Example init script
-
-
-```
-# create the script 
-touch    mkrepo
-chmod +x mkrepo
-```
-
-```
 #!/bin/bash
 dir=$(dirname $(readlink -f ${0}))
 # Derive repo name from directory.  Override if the repo of this git
 # directory isn't the same as the directory's base name.
 repo=${dir##*/}
-host=k8s-git-repo
+host=k8s-git-repo-secret
 
 # .ssh/config entry to enable simple access
 
@@ -56,7 +17,7 @@ host=k8s-git-repo
 # as the jump host to the DNS enabled k8s cluster
 
 <<MSG
-host k8s-git-repo
+host k8s-git-repo-secret
   User                  git
 #  Port                  2222
 # the name I have the k8s service. . .
@@ -76,15 +37,13 @@ cd ${repo}.git
 git init --bare
 INIT
 
+cat <<EOF
+git remote add ${repo} git@${host}:${repo}.git
+git push --set-upstream ${repo} master
+EOF
 git remote add ${repo} git@${host}:${repo}.git
 git push --set-upstream ${repo} master
 
 # alternatively 
 # git remote add origin git@${host}:${repo}.git
 # git push --set-upstream origin master
-```
-
-The formula in this assume that script/credentials has two environment
-variables set: user + password. that file is sourced by script/functions
-
-    ${KUBECTL} config --kubeconfig=${KUBECONFIG} set-credentials cluster-admin --username=${user} --password=${password}
