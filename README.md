@@ -14,18 +14,20 @@ persisted by using a node label and pin the instance to a node.
 A future version will support a persistant store.
 
 ---
-Options
-[x] ssh keys auto insertion to kubernetes/secrets
-[x] hostname setup with auto prefix from scripts/configure variable
-[x] credentials from only stored in ignored file .cfg/{hostname}
-[ ] persistent store
-[ ] enable secure persistence
+
+## Options
+
+- [x] ssh keys auto insertion to kubernetes/secrets
+- [x] hostname setup with auto prefix from scripts/configure variable
+- [x] credentials from only stored in ignored file .cfg/{hostname}
+- [ ] persistent store
+- [ ] enable secure persistence
 
 ---
-
+## Test options
 ```
-## test repo container name k8s-git-repo
-## For a docker based test . . .
+# test repo container name k8s-git-repo
+# For a docker based test . . .
 # .bashrc function for docker ip
 function docker-ip
 {
@@ -42,8 +44,7 @@ docker stop k8s-git-repo
 docker rm -v k8s-git-repo
 ```
 
-### Example init script
-
+## Example init script
 
 ```
 # create the script 
@@ -109,7 +110,7 @@ env variable syntax or source environment variables with the values
 for the kubernetes kubectl access.
 
 ```
-# script/credentials
+## script/credentials
 user=name
 password=password
 ```
