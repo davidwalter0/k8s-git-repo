@@ -25,6 +25,11 @@ function docker-ip
         echo usage: docker-ip cid
     fi
 }
+# example test run
+sudo docker run --name k8s-git-repo -itd k8s-git-repo
+ssh $(docker-ip k8s-git-repo)
+docker stop k8s-git-repo
+docker rm -v k8s-git-repo
 ```
 
 ### Example init script

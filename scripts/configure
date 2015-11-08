@@ -1,0 +1,30 @@
+#!/bin/bash
+# prefix might be your initials or other distinguishing text for a
+# process/rc,svc,pod,ep,namespace
+# key_type for ssh key
+# master /etc/host entry or DNS entry for access host to k8s cluster
+# os_user user on the os on the k8s nodes.
+
+prefix=dw
+key_type=rsa
+master=k8s-dw-master-01
+os_user=centos
+
+function validate
+{
+    valid=$1
+    eval "#!/bin/bash -x
+    if [[ \${0} != /bin/bash ]]; then
+        if [[ ! \${${valid}:-} ]]; then
+            echo 'required [scripts/configure] option: ${valid} not set';
+            exit 3;
+        fi;
+    fi;
+    #echo \${${valid}}
+"
+}
+
+validate prefix
+validate key_type
+validate master
+validate os_user

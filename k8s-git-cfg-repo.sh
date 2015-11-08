@@ -2,8 +2,9 @@
 dir=$(dirname $(readlink -f ${0}))
 # Derive repo name from directory.  Override if the repo of this git
 # directory isn't the same as the directory's base name.
+. ${dir}/scripts/configure
 repo=${dir##*/}
-host=k8s-git-repo
+host=${prefix}-k8s-git-repo
 
 # .ssh/config entry to enable simple access
 
@@ -17,7 +18,7 @@ host=k8s-git-repo
 # as the jump host to the DNS enabled k8s cluster
 
 <<MSG
-host k8s-git-repo
+host ${prefix}-k8s-git-repo
   User                  git
 #  Port                  2222
 # the name I have the k8s service. . .
@@ -29,18 +30,19 @@ host k8s-git-repo
   ProxyCommand       ssh -XC -A k8s-master-01 -W '%h:%p'
 MSG
 
-# ssh ${host} 'echo ${HOSTNAME}'
-
 ssh ${host}<<INIT
 mkdir ${repo}.git
 cd ${repo}.git
 git init --bare
 INIT
 
+cat <<EOF
 git remote add ${repo} git@${host}:${repo}.git
 git push --set-upstream ${repo} master
+EOF
+git remote add ${repo} git@${host}:${repo}.git
+git push --set-upstream ${repo} master
+git push ${repo} master
 
-# alternatively 
-# git remote add origin git@${host}:${repo}.git
-# git push --set-upstream origin master
+git remote add github git@github.com:davidwalter0/${repo}.git
 
