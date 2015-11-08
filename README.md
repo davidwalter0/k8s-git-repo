@@ -103,3 +103,16 @@ chmod 600 script/credentials
 
 Currently the script generates a .cfg/{cluster-name} file with
 kubernetes configuration.
+
+---
+
+Next steps:
+
+Merge the activities from k8s-jenkins-ui so that a private repo can be
+used as as pseudo source to simulate a registered source.
+
+Add the gitrepo to a pod requiring a gitrepo volume type
+
+Access the data from the gitrepo volume to do some work.
+
+Use the git repo to pull the test suite for execution.
