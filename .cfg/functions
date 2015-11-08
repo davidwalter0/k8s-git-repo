@@ -75,6 +75,15 @@ function status
 
 function main
 {
+    rm -f ${yaml}
+    if (( debug )); then
+        echo "building yaml file ${yaml} for debugging"
+        if [[ ! -e ${yaml} ]]; then
+            make-yaml > ${yaml}
+        fi
+        chmod 600 ${yaml}
+    fi
+
     if (( $# )) ; then
         for arg in ${@}; do
             case ${arg} in

@@ -9,6 +9,9 @@ prefix=dw
 key_type=rsa
 master=k8s-dw-master-01
 os_user=centos
+name=${dir##*/}
+yaml=${dir}/k8s-git-repo.yaml
+inyaml=k8s-git-template.yaml
 
 function validate
 {
@@ -28,6 +31,9 @@ validate prefix
 validate key_type
 validate master
 validate os_user
+validate name
+validate yaml
+validate inyaml
 
 export kubectl=${dir}/bin/kubectl
 export kubeconfig=${dir}/.private/.${master}.cfg
