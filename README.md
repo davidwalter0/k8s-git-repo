@@ -88,3 +88,15 @@ The formula in this assume that script/credentials has two environment
 variables set: user + password. that file is sourced by script/functions
 
     ${KUBECTL} config --kubeconfig=${KUBECONFIG} set-credentials cluster-admin --username=${user} --password=${password}
+
+Configure script/credentials with 600 permissions using standard shell
+env variable syntax or source environment variables with the values
+for the kubernetes kubectl access.
+
+```
+# script/credentials
+user=name
+password=password
+```
+
+chmod 600 script/credentials
