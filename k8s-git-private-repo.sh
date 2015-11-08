@@ -2,8 +2,8 @@
 dir=$(dirname $(readlink -f ${0}))
 name=${dir##*/}
 #name=private # ${dir##*/}
-name=k8s-git-repo-private
-yaml=${dir}/k8s-git-repo-private.yaml
+name=k8s-git-private-repo
+yaml=${dir}/k8s-git-private-repo.yaml
 # set -o errexit
 set -o nounset
 set -o pipefail
@@ -20,25 +20,11 @@ KUBECTL="${KUBECTL} --kubeconfig=${KUBECONFIG}"
 username=dw
 if [[ ! -e ${yaml} ]]; then
     cat > ${yaml} <<EOF
-$(cat k8s-git-repo-rc+svc-private.yaml|                                                         \
-  sed -r -e "s,namespace:.*k8s-git-repo.*,namespace: ${username}-private-k8s-git-repo,g"        \
-         -e "s,app:.*k8s-git-repo.*,app: ${username}-private-k8s-git-repo,g"                    \
-         -e "s,name:.*k8s-git-repo.*,name: ${username}-private-k8s-git-repo,g" )
----
-apiVersion: v1
-metadata:
-  namespace: ${username}-private-k8s-git-repo
-  name: ssh-key-secret
-data:
-  # id-rsa: $(base64 -w 0 ~/.ssh/id_rsa)
-  # id-rsa.pub: $(base64 -w 0 ~/.ssh/id_rsa.pub)
-  authorized-keys: $(base64 -w 0 ~/.ssh/id_rsa.pub)
-kind: Secret
-
-# local variables:
-# comment-start: "# "
-# mode: shell-script
-# end:
+$(cat k8s-git-private-rc+svc-repo.yaml|                                                         \
+  sed -r -e "s,namespace:.*k8s-git-repo.*,namespace: ${username}-k8s-git-repo,g"        \
+         -e "s,app:.*k8s-git-repo.*,app: ${username}-k8s-git-repo,g"                    \
+         -e "s,name:.*k8s-git-repo.*,name: ${username}-k8s-git-repo,g"                  \
+         -e "s,authorized-keys:.*,authorized-keys: $(base64 -w 0 ~/.ssh/id_rsa.pub),g")
 EOF
 
 fi
