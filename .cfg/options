@@ -28,3 +28,6 @@ validate prefix
 validate key_type
 validate master
 validate os_user
+
+export kubectl=${dir}/bin/kubectl
+export kubeconfig=${dir}/.private/.${master}.cfg

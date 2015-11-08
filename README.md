@@ -18,7 +18,7 @@ A future version will support a persistant store.
 ## Options
 
 - [x] ssh keys auto insertion to kubernetes/secrets
-- [x] hostname setup with auto prefix from scripts/configure variable
+- [x] hostname setup with auto prefixing from .cfg/options variable
 - [x] credentials only stored in ignored file .cfg/.{hostname}.cfg
 - [ ] persistent store
 - [ ] enable secure persistence
@@ -100,25 +100,14 @@ git push --set-upstream ${repo} master
 # git push --set-upstream origin master
 ```
 
-The formula in this assume that script/credentials has two environment
-variables set: user + password. that file is sourced by script/functions
+The formula in this assume that .cfg/credentials has two environment
+variables set: user + password. that file is sourced by .cfg/functions
 
     ${KUBECTL} config --kubeconfig=${KUBECONFIG} set-credentials cluster-admin --username=${user} --password=${password}
 
-Configure script/credentials with 600 permissions using standard shell
-env variable syntax or source environment variables with the values
-for the kubernetes kubectl access.
-
-```
-## script/credentials
-user=name
-password=password
-```
-
-chmod 600 script/credentials
-
-Currently the script generates a .cfg/{cluster-name} file with
-kubernetes configuration.
+Configure .cfg/functions requests username and password and generates
+a .private/.{cluster-name}.cfg file with kubernetes configuration and
+secrets.
 
 ---
 

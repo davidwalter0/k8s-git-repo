@@ -2,7 +2,8 @@
 dir=$(dirname $(readlink -f ${0}))
 # Derive repo name from directory.  Override if the repo of this git
 # directory isn't the same as the directory's base name.
-. ${dir}/scripts/configure
+. ${dir}/.cfg/options
+
 repo=${dir##*/}
 host=${prefix}-k8s-git-repo
 

@@ -1,5 +1,4 @@
-
-/.cfg
+/.private
 /Dockerfile
 /k8s-git-private-repo.yaml
 /k8s-git-repo-secret.yaml
