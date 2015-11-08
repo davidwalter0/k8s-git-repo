@@ -100,3 +100,6 @@ password=password
 ```
 
 chmod 600 script/credentials
+
+Currently the script generates a .cfg/{cluster-name} file with
+kubernetes configuration.

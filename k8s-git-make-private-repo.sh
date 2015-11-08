@@ -3,7 +3,7 @@ dir=$(dirname $(readlink -f ${0}))
 # Derive repo name from directory.  Override if the repo of this git
 # directory isn't the same as the directory's base name.
 repo=${dir##*/}
-host=k8s-git-repo-secret
+host=dw-private-k8s-git-repo
 
 # .ssh/config entry to enable simple access
 
@@ -17,7 +17,7 @@ host=k8s-git-repo-secret
 # as the jump host to the DNS enabled k8s cluster
 
 <<MSG
-host k8s-git-repo-secret
+host dw-private-k8s-git-repo
   User                  git
 #  Port                  2222
 # the name I have the k8s service. . .

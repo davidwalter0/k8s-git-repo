@@ -1,5 +1,4 @@
 #!/bin/bash
-. ${dir}/scripts/credentials
 # The next incarnation will use a git repo pulled into the
 # jenkins home
 
@@ -26,6 +25,7 @@ check
 # defer evaluation of the directory variable /go/home/k8s/jenkins is
 # to enable location independence.
 if ! [[ -e ${KUBECONFIG} ]]; then
+   . ${dir}/scripts/credentials
    mkdir -p ${dir}/.cfg
    chmod 700 ${dir}/.cfg
    ${KUBECTL} config --kubeconfig=${KUBECONFIG} set-cluster k8s --server=https://${KUBE_MASTER}:443 --insecure-skip-tls-verify=true
