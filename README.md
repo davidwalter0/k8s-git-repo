@@ -13,6 +13,16 @@ persisted by using a node label and pin the instance to a node.
 
 A future version will support a persistant store.
 
+---
+Options
+[x] ssh keys auto insertion to kubernetes/secrets
+[x] hostname setup with auto prefix from scripts/configure variable
+[x] credentials from only stored in ignored file .cfg/{hostname}
+[ ] persistent store
+[ ] enable secure persistence
+
+---
+
 ```
 ## test repo container name k8s-git-repo
 ## For a docker based test . . .
