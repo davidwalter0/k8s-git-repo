@@ -10,8 +10,8 @@ key_type=rsa
 master=k8s-dw-master-01
 os_user=centos
 name=${dir##*/}
-yaml=${dir}/k8s-git-repo.yaml
-inyaml=k8s-git-template.yaml
+yaml=${dir}/${name}.yaml
+inyaml=${dir}/${name}-template.yaml
 
 function validate
 {
