@@ -17,7 +17,7 @@ function make-yaml
   sed -r -e "s,namespace:.*k8s-git-repo.*,namespace: ${prefix}-k8s-git-repo,g"          \
          -e "s,app:.*k8s-git-repo.*,app: ${prefix}-k8s-git-repo,g"                      \
          -e "s,name:.*k8s-git-repo.*,name: ${prefix}-k8s-git-repo,g"                    \
-         -e "s,authorized-keys:.*,authorized-keys: $(base64 -w 0 ~/.ssh/id_rsa.pub),g"  \
+         -e "s,authorized-keys:.*,authorized-keys: $(base64 -w 0 ~/.ssh/id_${ssh_key_type}.pub),g"  \
          ${inyaml}
 }
 
