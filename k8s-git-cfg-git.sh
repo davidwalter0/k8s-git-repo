@@ -2,7 +2,7 @@
 dir=$(dirname $(readlink -f ${0}))
 # Derive repo name from directory.  Override if the repo of this git
 # directory isn't the same as the directory's base name.
-. ${dir}/.cfg/options
+. ${dir}/.cfg/functions
 
 repo=${dir##*/}
 host=${prefix}-k8s-git-repo
@@ -19,6 +19,7 @@ host=${prefix}-k8s-git-repo
 # as the jump host to the DNS enabled k8s cluster
 
 <<MSG
+# prefix comes from .cfg/config
 host ${prefix}-k8s-git-repo
   User                  git
 #  Port                  2222
@@ -45,5 +46,5 @@ git remote add ${repo} git@${host}:${repo}.git
 git push --set-upstream ${repo} master
 git push ${repo} master
 
-git remote add github git@github.com:davidwalter0/${repo}.git
+git remote add github git@github.com:${hubuid}/${repo}.git
 

@@ -103,7 +103,9 @@ git push --set-upstream ${repo} master
 The formula in this assume that .cfg/credentials has two environment
 variables set: user + password. that file is sourced by .cfg/functions
 
-    ${KUBECTL} config --kubeconfig=${KUBECONFIG} set-credentials cluster-admin --username=${user} --password=${password}
+    ${KUBECTL} config --kubeconfig=${KUBECONFIG} \
+                      set-credentials \
+                      cluster-admin --username=${user} --password=${password}
 
 Configure .cfg/functions requests username and password and generates
 a .private/.{cluster-name}.cfg file with kubernetes configuration and
