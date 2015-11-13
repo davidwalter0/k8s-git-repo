@@ -14,6 +14,23 @@ persisted by using a node label and pin the instance to a node.
 A future version will support a persistant store.
 
 ---
+### cfg
+
+Setup a shared cfg scripts or clone github.com/davidwalter0/k8s-cfg to
+a directory level with the current directory.
+
+link or copy a version of k8s-cfg scripts to .k8s-cfg
+and update .cfg/{usage,make-yaml,mycfg,overrides}.
+
+At a minimum .cfg/mycfg is required to point to the clusters address
+and naming convention. 
+
+    ln -s /path/to/k8s-cfg/.k8s-cfg .k8s-cfg
+
+If you need to send a build script to the cluster via the service you
+can proxy the location or curl to the address
+
+---
 
 ## Options
 

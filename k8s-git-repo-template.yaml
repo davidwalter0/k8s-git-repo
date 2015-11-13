@@ -1,0 +1,134 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8s-git-repo
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  namespace: k8s-git-repo
+  name: k8s-git-repo
+  labels:
+    app: k8s-git-repo
+    version: v0.1
+    release: canary
+spec:
+  replicas: 1
+  selector:
+    app: k8s-git-repo
+    version: v0.1
+  template:
+    metadata:
+      labels:
+        app: k8s-git-repo
+        version: v0.1
+        release: canary
+    spec:
+      containers:
+      - name: k8s-git-repo
+        image: k8s-git-repo
+        imagePullPolicy: IfNotPresent
+        command: 
+        - /bin/bash
+        args:
+        - -c
+        - |
+          #!/bin/bash
+          verbose=0
+
+          # ########################################################
+          # bash signal handlers are executed by docker, but signal
+          # handler [traps] don't appear to be seen by rc delete or
+          # stop in kubernetes v1, commenting for future reference
+          # ########################################################
+
+          # function clean
+          # {
+          #     signal=${1}
+          #     printf "\nSignal ${signal} clean up begun . . . "
+          #     rm -f /home/git/.ssh/*
+          #     printf "done.\n"
+          #     exit 0
+          # }
+
+          # function setup-traps
+          # {
+          #     wrap="$1" ; shift
+          #     call="$1" ; shift
+          #     for sig ; do
+          #         trap "${wrap} ${call} ${sig}" "${sig}"
+          #     done
+          # }
+
+          # function wrap-trap-func
+          # {
+          #     if ((verbose)); then
+          #         printf "\nTrapped: ${2}. Calling ${1} from signal ${2} "
+          #     fi
+          #     ${1} ${2}
+          # }
+          # # setup by calling wrap with args for the function to call and the
+          # # signal name to trap
+          # setup-traps wrap-trap-func clean EXIT KILL TERM INT HUP ILL QUIT USR1 USR2 SEGV STOP
+
+          while [[ ! -e /home/git/.private/authorized-keys ]]; do
+              sleep 1;
+          done;
+          pushd /home/git/.private/
+
+          chmod 700 *;
+          chown git *;
+          pushd /home/git/.ssh/
+          for file in /home/git/.private/*; do
+              name=${file//-/_}
+              #######################################################
+              # If the secrets are copied then the dead container may
+              # expose the secret. Since this is a public key, it
+              # might be okay, but for getting into a good habit soft
+              # link as the owner, leaving it in the secret store.
+              # ######################################################
+              su -c "ln -sf ${file} ${name##*/}" git
+          done;
+          chmod -R 700 /home/git/{.private,.ssh} ;
+          chown -R git /home/git/{.private,.ssh} ;
+
+          echo Running sshd . . .
+          /usr/sbin/sshd -D
+          echo Exiting . . .
+        ports:
+        - containerPort: 22
+        volumeMounts:
+        - mountPath: /home/git/.private
+          name: secret-volume
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: k8s-git-repo-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: k8s-git-repo
+  name: k8s-git-repo
+  labels:
+    app: k8s-git-repo
+spec:
+  selector:
+    app: k8s-git-repo
+  ports:
+  - port: 22
+---
+apiVersion: v1
+metadata:
+  namespace: k8s-git-repo
+  name: k8s-git-repo-secret
+data:
+  # id-rsa: $(base64 -w 0 ~/.ssh/id_rsa)
+  # id-rsa.pub: $(base64 -w 0 ~/.ssh/id_rsa.pub)
+  authorized-keys: $(base64 -w 0 ~/.ssh/id_rsa.pub)
+kind: Secret
+
+# local variables:
+# comment-start: "# "
+# mode: yaml
+# end:

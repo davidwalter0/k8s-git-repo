@@ -1,0 +1,4 @@
+#!/bin/bash
+dir=$(dirname $(readlink -f ${0}))
+. ${dir}/.k8s-cfg/functions
+main ${@}

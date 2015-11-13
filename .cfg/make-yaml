@@ -1,14 +1,30 @@
 #!/bin/bash
+function make-yaml-stdio
+{
+    if (( ! rename )); then
+        local id=""
+    fi
+    public=$(base64 -w 0 ~/.ssh/id_${ssh_key_type}.pub)
+    private=$(base64 -w 0 ~/.ssh/id_${ssh_key_type})
+    sed -r                                                                              \
+        -e "s,\{repo\}(.*),${k8stestrepo}\\1,g"                                         \
+        -e "s,app:.*${name}.*,app: ${id}${name},g"                                      \
+        -e "s,namespace:.*${name}.*,namespace: ${id}${name},g"                          \
+        -e "s,secretName: *${name}-secret *\$,secretName: ${id}${name}-secret,g"        \
+        -e "s,name: *${name}-secret,name: ${id}${name}-secret,g"                        \
+        -e "s,name: *${name} *\$,name: ${id}${name},g"                                  \
+        -e "s,authorized-keys:.*,authorized-keys: ${public},g"                          \
+        -e "s,id-:.*,id-${ssh_key_type}: ${private},g"                                  \
+        -e "s,id-.pub:.*,id-${ssh_key_type}.pub: ${public},g"
+}
+
+function make-yaml-call
+{
+    local inyaml=${1}
+    make-yaml-stdio < ${inyaml}
+}
 
 function make-yaml
 {
-# if {repo} is used for a repo to auto inject then the following
-# formula might be inserted for a sed replacement
-#        -e "s,\{repo\}(.*),${k8stestrepo}\\1,g"
-
-  sed -r -e "s,namespace:.*k8s-git-repo.*,namespace: ${prefix}-k8s-git-repo,g"                          \
-         -e "s,app:.*k8s-git-repo.*,app: ${prefix}-k8s-git-repo,g"                                      \
-         -e "s,name:.*k8s-git-repo.*,name: ${prefix}-k8s-git-repo,g"                                    \
-         -e "s,authorized-keys:.*,authorized-keys: $(base64 -w 0 ~/.ssh/id_${ssh_key_type}.pub),g"      \
-         ${inyaml}
+    make-yaml-call ${inyaml}
 }

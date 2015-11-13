@@ -1,0 +1,519 @@
+
+build,810
+dir=2,12
+RUN apt-get -y update 6,89
+    apt-get -y install openssh-server server7,139
+    apt-get -y install git bash 8,189
+    apt-get -y clean;9,239
+    apt-get -y clean; apt-get -y autoclean 9,239
+    locale-gen en_US 10,289
+RUN mkdir -p /etc/ssh /var/run/sshd sshd13,387
+RUN     sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config sshd_config14,425
+RUN adduser --system git 21,806
+RUN touch /home/git/.ssh/authorized_keys authorized_keys29,1115
+    touch /home/git/.hushlogin;hushlogin30,1197
+    chmod 700 /home/git/.ssh;ssh31,1279
+RUN sed -i s#/home/git:/bin/false#/home/git:/bin/bash# /etc/passwd passwd35,1364
+    service sshd start || true || service sshd stop || true 36,1438
+    service ssh start || true || service ssh stop || true 37,1512
+
+build.alpine.test.broken.ssh-keys,10
+dir=2,12
+
+.cfg/make-yaml,25
+function make-make2,12
+
+.cfg/mycfg,137
+export id=3,63
+export os_user=8,154
+export yaml=10,199
+export inyaml=11,231
+export make_yaml_file=12,274
+export k8stestrepo=13,318
+
+.cfg/usage,19
+function usage1,0
+
+Dockerfile,1872
+RUN apt-get -y update 3,19
+RUN apt-get -y update ;                             apt-get -y install openssh-server server3,19
+RUN apt-get -y update ;                             apt-get -y install openssh-server ;             apt-get -y install git bash 3,19
+RUN apt-get -y update ;                             apt-get -y install openssh-server ;             apt-get -y install git bash ;                   apt-get -y clean;3,19
+RUN apt-get -y update ;                             apt-get -y install openssh-server ;             apt-get -y install git bash ;                   apt-get -y clean; apt-get -y autoclean 3,19
+RUN apt-get -y update ;                             apt-get -y install openssh-server ;             apt-get -y install git bash ;                   apt-get -y clean; apt-get -y autoclean ;        locale-gen en_US 3,19
+RUN mkdir -p /etc/ssh /var/run/sshd sshd5,307
+RUN     sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config sshd_config6,345
+RUN adduser --system git 13,726
+RUN touch /home/git/.ssh/authorized_keys authorized_keys20,1459
+RUN touch /home/git/.ssh/authorized_keys ;                                          touch /home/git/.hushlogin;hushlogin20,1459
+RUN touch /home/git/.ssh/authorized_keys ;                                          touch /home/git/.hushlogin;                                                     chmod 700 /home/git/.ssh;ssh20,1459
+RUN sed -i s#/home/git:/bin/false#/home/git:/bin/bash# /etc/passwd passwd24,1704
+RUN sed -i s#/home/git:/bin/false#/home/git:/bin/bash# /etc/passwd ;        service sshd start || true || service sshd stop || true 24,1704
+RUN sed -i s#/home/git:/bin/false#/home/git:/bin/bash# /etc/passwd ;        service sshd start || true || service sshd stop || true ;               service ssh start || true || service ssh stop || true 24,1704
+
+entry-gen.sh,83
+    echo \${key} > /tmp/junk;junk9,255
+    echo \${key} > /tmp/junk; file=9,255
+
+k8s-cfg,10
+dir=2,12
+
+.k8s-cfg/functions,283
+function check18,543
+function start54,1529
+function stop64,1673
+function status-status71,1738
+function status77,1860
+function generate100,2705
+function git-git112,2939
+function describe171,4612
+function replicas182,4909
+function push-push190,5064
+function main201,5465
+
+.k8s-cfg/kubecfg,74
+function namespace18,343
+function kubectl31,674
+function kubecfg36,746
+
+.k8s-cfg/make-yaml,79
+function make-make3,13
+function make-make14,478
+function make-make20,561
+
+.k8s-cfg/options,25
+function validate17,425
+
+.k8s-cfg/tunnel,153
+function tunnel-tunnel3,13
+function tunnel-tunnel10,158
+function tunnel-tunnel17,315
+function tunnel-tunnel28,681
+function tunnel-tunnel39,882
+
+.k8s-cfg/usage,19
+function usage1,0
+
+.k8s-cfg/watch,22
+function running3,13
+
+k8s-git-cfg-git.sh,34
+dir=2,12
+repo=7,198
+host=8,214
+
+k8s-git-push.sh,22
+dir=2,12
+image=3,47
+
+k8s-git-repo.sh,10
+dir=2,12
+
+k8s-git-repo.tar,14040
+    entry with 2417,876325
+Entry Objects:Objects9670,2804629
+	function command_not_found_handle 25275,8138407
+  function convert_coord(379090,60688797
+  function convert_latitude(379107,60689538
+  function convert_longitude(379111,60689663
+  function dist(379118,60689993
+   function or 444018,80321429
+   Function calls 463667,82216036
+    function my_special_output_routine(463714,82217289
+function gobble(463830,82225833
+function ptr_to(463844,82226089
+function  decl(463857,82226370
+function eat_comment(464020,82230993
+function gobble(464053,82232224
+function ptr_to(464067,82232480
+function  decl(464080,82232761
+function usage(464313,82246799
+function middle(464370,82248746
+function  isort(464384,82248951
+function  qsort(464400,82249199
+function is 471716,82916453
+% FUNCTION APPLICATION638580,91276603
+function in 866990,107485292
+    function calls 1119323,130180304
+ entry against 1122150,130307380
+ function that 1133711,130798813
+ function which 1134539,130834785
+ function into 1136245,130912007
+ entry against 1143253,131217932
+ entry against 1143276,131218913
+ entry points 1184507,133085829
+ entry points 1184521,133086571
+ entry points 1188096,133245657
+function declarations.declarations1307207,149001031
+function synopsis 1319669,150368581
+function with 1341771,154310041
+function returns;1341773,154310188
+function call.call1342247,154383510
+function in 1355974,158130717
+        entry or 1438743,176987768
+        Entry point 1440333,177044690
+        entry or 1441289,177096582
+        Entry point 1441856,177148816
+        function while 1464762,178506750
+    function from 1465799,178645195
+function calls 1467466,178826391
+function calls 1467499,178829235
+function compile(1468388,178900288
+Function get_close_matches(1472221,179237419
+Function context_diff(1472224,179237560
+Function ndiff(1472227,179237659
+Function restore(1472230,179237757
+Function unified_diff(1472233,179237857
+        function that 1472354,179243224
+    function and 1473003,179278183
+        function that 1473670,179336872
+    function and 1474115,179364979
+       function as 1475755,179517525
+    function acts 1475893,179536372
+    Function objects 1477275,179689648
+    function to 1477552,179718426
+    entry to 1479753,179972981
+function call 1481876,180227009
+    function automatically 1485164,180525398
+entry in 1485615,180578565
+       function should 1487055,180748020
+function is 1487108,180752733
+        function to 1487182,180757136
+    function that 1487646,180806134
+    function will 1488016,180837063
+Function whathdr(1488846,180910002
+Function what(1488862,180910687
+  entry is 1489234,180941800
+Function            Description1490053,181033091
+Function            Description1490091,181034366
+function when 1490559,181076261
+    function definition 1496036,181577161
+        function while 1501562,181893401
+    function from 1506050,182063575
+function calls 1524342,182963546
+function calls 1524429,182967152
+function compile(1526528,183042182
+Function get_close_matches(1544160,183813701
+Function context_diff(1544163,183813842
+Function ndiff(1544166,183813941
+Function restore(1544169,183814039
+Function unified_diff(1544172,183814139
+        function that 1544311,183819382
+    function and 1545520,183866568
+    function to 1549073,184190330
+    function should 1549144,184195205
+    function to 1566019,185056905
+    function should 1566210,185064689
+        function that 1567609,185118522
+    function and 1568657,185160188
+       function as 1622181,188058045
+    function acts 1622781,188081736
+    function specific 1630504,188488617
+    function specific 1635061,188673664
+        function which 1640692,188894061
+        function which 1651912,189496713
+entry definitions 1658735,190118279
+        entry most 1659022,190133130
+    Function objects 1667558,190508077
+    function to 1668463,190544574
+function to 1686383,193569978
+function to 1687897,193634753
+    entry to 1700893,194203952
+    Function used 1702772,194340731
+    Function used 1706446,194570976
+function call 1717310,194941172
+    function automatically 1730360,195426567
+entry in 1731935,195488708
+function are 1735523,195635909
+function definitions.definitions1735823,195648112
+function decorators.decorators1735844,195648774
+    function body 1735871,195649974
+Function definitions1736347,195670114
+function object 1736368,195671074
+function definition 1736400,195672432
+Function call 1736416,195673164
+function that 1736450,195675202
+function definitions.definitions1736486,195676413
+function decorators.decorators1736507,195677075
+    function body 1736534,195678275
+function and 1737442,195715294
+function and 1737647,195724801
+Function definitions1738247,195753650
+function object 1738268,195754610
+function definition 1738300,195755968
+Function call 1738316,195756700
+function that 1738350,195758738
+function definition,1738374,195759736
+function definitions 1738644,195770926
+function and 1738930,195783551
+      Function objects 1741957,195914844
+      function attributes 1741981,195916015
+      function object 1742003,195917131
+      function to 1742036,195918910
+   function object,1742150,195924850
+      function object 1742192,195926893
+      function called 1742255,195930275
+Function objects 1742343,195934551
+       function should 1745518,196447540
+function is 1745662,196454483
+        function to 1745767,196458472
+    function that 1747188,196509829
+    function will 1748282,196548995
+Function whathdr(1750523,196634158
+Function what(1750539,196634843
+  entry is 1751416,196666228
+Function            Description1755144,196804507
+Function            Description1755182,196805782
+function when 1756340,196850418
+       entry to 1767333,197297744
+       entry to 1768824,197369980
+        function which 1771856,197511682
+        function identified 1772374,197534634
+        function is 1772479,197538661
+        function identified 1773563,197584851
+        function identified 1774500,197627542
+        function which 1775547,197681622
+        function identified 1775879,197707142
+        function is 1775930,197711159
+        function identified 1776550,197760153
+        function identified 1777288,197813002
+function is 1777883,197860185
+function returns 1777887,197860463
+    entry       Entry1778459,197933911
+    entry       Entry1778478,197935767
+    entry       EntrycEntryc1778563,197945382
+    entry       EntryNcEntryNc1778588,197957100
+     entry are 1778699,197980705
+function is 1779890,198075570
+function returns 1779894,198075848
+    entry       Entry1782071,198150216
+    entry       Entry1782118,198151985
+    entry       Entry"Entry1782339,198160190
+    entry       Entry"Entry1782561,198167830
+     entry are 1783040,198186531
+    function definition 1791491,198490922
+    function by 1792886,198624501
+    function by 1796763,198817835
+function deactivate 1805218,199233653
+    function fish_prompt1805270,199235161
+    function for 1820231,200018932
+        function can 1820812,200054140
+    function for 1821471,200092667
+        function can 1822742,200134427
+function to 1860070,211336728
+subroutine rendering 1860433,211346943
+      Subroutine subname11860914,211363789
+subroutine or 1860929,211364322
+  Subroutine clear_noremap1860946,211365155
+Subroutine or 1860975,211365934
+Subroutine defined.defined1860979,211365971
+entry you 1892526,212207813
+entry to 1892536,212208260
+Function pointer,1903638,212548618
+				       subroutine in 1918428,213142207
+Function C<C1951791,214109571
+function C<C1962323,214449000
+function takes 1964468,214508172
+function should 1966956,214584048
+function can 1972113,214743630
+    entry mapping 1974229,214809205
+subroutine by 2005230,228118216
+entry point 2008066,228234347
+entry point 2008084,228234998
+function may 2008356,228243922
+subroutine was 2010480,228312031
+   function name 2068250,232311025
+   function as 2072192,232523229
+   function returns 2074832,232651165
+   function for 2075261,232673062
+   function in 2077219,232771186
+   function in 2077513,232786411
+    function validateForm(2099694,233600820
+   function validateDate(2099718,233601624
+    function doPraise(2099729,233601892
+    function checkColor(2099738,233602067
+function that 2120320,234988301
+function padLeftStr(2141423,238951320
+function padLeft(2141448,238952039
+function createRequestObject(2141468,238952420
+function addCssRule(2141493,238952957
+function unquote(2141583,238955967
+	function unq(2141584,238955991
+function timezoneOffset(2141647,238957727
+function localTimezoneOffset(2141661,238958119
+function localTimezoneInfo(2141672,238958432
+function parseRFC2822Date(2141685,238958808
+function formatTimezoneInfo(2141708,238959811
+function normalizeTimezoneInfo(2141730,238960557
+function formatDateISOLocal(2141749,238961097
+function formatDateRFC2882(2141774,238962085
+function setCookie(2141837,238965275
+function getCookie(2141883,238966392
+function deleteCookie(2141902,238967028
+function fixLinks(2141941,238968101
+function onloadTZSetup(2141972,238969198
+function fixDatetimeTZ(2142006,238970357
+function addChangeTZ(2142047,238971918
+function createChangeTZForm(2142087,238973419
+function removeChangeTZForm(2142133,238975044
+function displayChangeTZForm(2142172,238976391
+function generateTZList(2142190,238976950
+function generateTZOptions(2142214,238977656
+function selectTZHandler(2142247,238978755
+function closeTZFormHandler(2142272,238979574
+function Commit(2142324,238981312
+function countLines(2142347,238981879
+function updateProgressInfo(2142364,238982263
+function writeTimeInterval(2142398,238983107
+function errorInfo(2142421,238983770
+function getColorNo(2142450,238984604
+function chooseColorNoFrom(2142474,238985175
+function findColorNo(2142495,238985782
+function isStartOfGroup(2142536,238986958
+function fixColorsAndGroups(2142546,238987203
+function handleLine(2142593,238988701
+function processBlameLines(2142725,238992428
+function processData(2142799,238994261
+function handleError(2142819,238994758
+function responseLoaded(2142838,238995219
+function handleResponse(2142859,238995864
+function startBlame(2142938,238998114
+function as 2154736,241713324
+subroutine ceased 2158900,241846348
+function calls 2173472,242297992
+function sets,2173674,242304436
+      function riddle_me_this(2174192,242324129
+      function response(2174199,242324361
+function that 2174753,242343096
+function by 2176054,242384325
+    Function system(2182037,242601008
+    Function system(2184066,242674602
+function will 2215875,243690023
+	   function too.too2216872,243721908
+	   function too.too2216910,243723049
+function to 2218361,243763769
+subroutine that 2235185,244251895
+function returns 2235421,244260006
+function names 2237011,244307198
+function for 2237019,244307688
+entry or 2241758,244441031
+entry or 2241802,244442189
+Function to 2242226,244452673
+function in 2243010,244474304
+function will 2247511,244611738
+function is 2247540,244612786
+function functions 2249443,244664595
+subroutine only 2250245,244689070
+subroutine by 2250405,244694466
+function or 2280884,245546361
+subroutine name 2281267,245560449
+function to 2281853,245581369
+function like 2405211,247679634
+function for 2405837,247704299
+function in 2406056,247714496
+entry used 2407515,247770090
+function argument.argument2427100,248337546
+function to 2427109,248338073
+function looking 2428090,248368175
+function C<C2428119,248369251
+function will 2428159,248370738
+entry for 2455284,249386834
+entry in 2462520,249583027
+function functions 2466914,249714521
+function functions 2467370,249729883
+function functions 2467521,249734814
+function functions 2467619,249738454
+subroutine is 2468340,249760150
+function around 2468403,249762077
+function is 2483579,250259122
+function setActiveStyleSheet(2489180,250437649
+function getActiveStyleSheet(2489190,250437960
+function getPreferredStyleSheet(2489201,250438251
+function createCookie(2489212,250438576
+function readCookie(2489222,250438847
+function is 2499684,250777673
+function name.name2501131,250824152
+function with 2501226,250828028
+function happens 2501229,250828235
+subroutine when 2501709,250845764
+function which 2501772,250848803
+subroutine reference 2504295,250927988
+function that 2516681,251281345
+function which 2520562,251378425
+subroutine need 2525979,251537109
+function is 2530559,251676832
+function functions 2531800,251715238
+function functions 2531886,251718127
+function allows 2585217,254848816
+function doesn'doesn2585571,254864472
+entry will 2586016,254881963
+function functions 2587278,254934551
+subroutine references.references2589351,255006072
+subroutine name.name2589782,255018110
+function hides 2594848,255173025
+function which 2598517,255285297
+subroutine to 2600541,255342586
+subroutine is 2606303,255526325
+subroutine identifier,2606703,255541480
+subroutine definition 2606793,255544890
+function correctly,2606795,255545023
+subroutine call 2607127,255557089
+subroutine or 2607984,255588519
+subroutine with 2608113,255593474
+subroutine an 2609087,255631237
+subroutine may 2611414,255716669
+function has 2612914,255772186
+function calls 2664983,257215585
+function sets,2665187,257222134
+      function riddle_me_this(2665694,257241250
+      function response(2665701,257241482
+function that 2666248,257259825
+function by 2667577,257302896
+entry above)2671045,257409609
+entry above)2671685,257425866
+entry above)2672394,257445144
+Subroutine to 2680302,257672347
+function will 2681665,257710559
+function C<C2682915,257746417
+Subroutine to 2700335,258284334
+     function or 2713956,258790379
+     function must 2713972,258791140
+   function or 2714414,258810700
+function allows,2720640,259038069
+subroutine should 2721246,259059216
+function without 2721257,259059875
+function that 2722663,259104506
+
+k8s-git-repo-template.yaml,26
+          verbose=37,640
+
+k8s-git-template.yaml,26
+          verbose=37,640
+
+README.md,31
+function docker-docker32,823
+
+scripts/enter,76
+function clean3,22
+function setup-setup12,171
+function wrap-wrap21,314
+
+tmp/secret-example-secret.yaml,32
+  id-rsa: dmFsdWUtMg0KDQo=3,21
+
+tmp/secret-working.yaml,2259
+  id-rsa: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcFFJQkFBS0NBUUVBb3JUQUJkV3AzOTBSZDdTS2RoOEE5ZFVBRWxDb1dlM1dvYUpoNk5rbDR5VDEzclhKClh3RDhPck8wUUZQVGVmMWxCZ0JzYmxsMDMwd0V5SXRUVTlhZWlEdFZVY2FpUW9wMFQreTdpbnIrOXZDT0JQSFQKMjdJais0SE5JM1AxZ3JaUzM2MXNUKzdNM29XU0N3clJqL25PdXJ4Uk9EbWV1VGRCRjkwbW9mWlFzcFZEYlVXRwpRQWo4UHNnc2p2dFFUeHM1czNoZytxbGJOZ2ZNWi9LbmRsR0N2b240NzJFL3F3SjFSNHQzb3I0cjVmcEs2MnBQClk5ZlNnNUc1U0l1Nkl0RUIrYzAzYitKcmpTcng3VFNUNGtZMTZhcmp5bUhERmlrYVhlQW9lOFl6S2VQcVJhVXoKTUtGUDV4VjdEWitacW05Y3F3aVpqSFcwUm02QjgzaHNyVGFhdHdJREFRQUJBb0lCQUFueXNUYnFIR3ZTa1duWApRUXY5MDBvMGpyK1A3T3Nxcm8vTlpOMGV3Y0ZFbGovYXI0ZytnQzE2cFUrMWtGMktENjR4UW0vd3lrT0kyMVlECnBzR2VncXpqcTlESEswNlVObzVZZEJNQWVDeFRBdXZzZVQ2YWdyYXk5Zjd2N1JmajIrZFBMQ3NxOTUyM1h2bUwKM01wSHhNc0lEcE00ZXFycVpQRjNsUkFjQmswVTJFZ084SXc1cWt5RVg5YXBvZ2NwOTRjS1A3OFcvN1h3clFXRAoxVDl4ajBJcWhZaTRSN2FaTlNwV1FlOFpobmtxZlU1ZldGUEtXUXVrdXRCaThpNmVRWUg1RjJ4WjcrUzdybFI3ClM5ekh4MFRaUDI5YmMweWpnZCtiY2hKTWlJazc1OHJ3VFNhVlM3RVJBM1MwN2V0TVEwMlpzTWVydGpJZHA5YWYKakQyMUR5a0NnWUVBenE4WVE1dEp4Rjh5dUc2WGYva3kyK0NPY3VjdzRhdGwxQmljTnRlOW82Y0dpK051NzkwZwptUFVEbTRHbDA0dHdmOG5jdG9ncXNBT2pSRXhvbXNKcll5aU1yWGR3QTd1eElDT3ZsMHljaHRWREZMdzJ4MUlYCnlHWGdCaEozMkR5N2hwcjdveUNQcnRCWWNrUjZpRjl5WHBMWFo5eE42Zk15bEVqVUxSc0FMM01DZ1lFQXlZZFkKdXI0cExOOTZGalZoQmNKVGh0YnorVnpVblVKSlhBYjJMUEcxWGk3WXZHRmdmYjlpZTQrVXJ5RVExV2NRRG1vRwpUUlA3aVR1RmhmakVObGNhN1ZKRW1qdlRiNkk1ektwdUIyQjNoMDBhN3VXYk1XMGd6L0x1MTF2cU1HUkg4c2xDClAvUlFHQ2M5aTBObTljNTFZaWJ6WTlFMzFiVlAzVXNhcEU1NHpxMENnWUVBdlZIWHVQM0NlVlQyUWNoVGo4NjEKVG9FSUdxbzR0VTNwelhqcGhyYmhwOGswRHVrNlVnN01jQzltcVlmOVhLUUtYWk9MVDh1MHhsdmVybzRLOTArRgpUR1AxVUdQcVFCRXA4eFdkSHNyM1NlNkpMcklrdnprc1BjMUxnbVJpVUxsNDBKaWdUVkZqSzY3K2hWVENwSzVCCk5lM3R6OTRWcEdtM2QrcXFKOUxtdlk4Q2dZRUFtQlVFdDhCanNGSmhmcnIvb2VuNVFLdWNhQlZPK2ZJWkRGTFEKbWpBNXozNkkzdmlaYWF2eE5RK3dnOHp2T0N4VHFKMElia2hqTFRmMjFwaFo4aXdmelBLbGhNTWJGNGFVR2NpUAp5ZzlaaElpQ2g4Qk1NcXVJOUlUL0N4UjVFZFhMbWdPWmRFdjUyWkJiV0dvZ0crV1hIZUFKRXMzRFZncEMzOXdhCm1kNENPdTBDZ1lFQWo3S1ZHNW9HUjVDUUl0RXhsM2s1YlRqUWtoV096YWJYY2x3UlRmYmhiRmlFd0YxYnhNdzgKQ0luRWhkVXBoNGdYV0UzU0NXd2FLTWlRYzBuM0x4VFdRbmRKR3dJK2JKUkpXcEZCeVo4QU8rSnlDdit1cFErbwozejdha3NteG81aDlBcnBtQWV0eDNxdksrcEZyN2hydFV4TXYzQlFEUld0TFgvd1FYc2JzQjUwPQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=53,1167
+
+tmp/secret.yaml,2387
+  id-rsa: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcFFJQkFBS0NBUUVBb3JUQUJkV3AzOTBSZDdTS2RoOEE5ZFVBRWxDb1dlM1dvYUpoNk5rbDR5VDEzclhKClh3RDhPck8wUUZQVGVmMWxCZ0JzYmxsMDMwd0V5SXRUVTlhZWlEdFZVY2FpUW9wMFQreTdpbnIrOXZDT0JQSFQKMjdJais0SE5JM1AxZ3JaUzM2MXNUKzdNM29XU0N3clJqL25PdXJ4Uk9EbWV1VGRCRjkwbW9mWlFzcFZEYlVXRwpRQWo4UHNnc2p2dFFUeHM1czNoZytxbGJOZ2ZNWi9LbmRsR0N2b240NzJFL3F3SjFSNHQzb3I0cjVmcEs2MnBQClk5ZlNnNUc1U0l1Nkl0RUIrYzAzYitKcmpTcng3VFNUNGtZMTZhcmp5bUhERmlrYVhlQW9lOFl6S2VQcVJhVXoKTUtGUDV4VjdEWitacW05Y3F3aVpqSFcwUm02QjgzaHNyVGFhdHdJREFRQUJBb0lCQUFueXNUYnFIR3ZTa1duWApRUXY5MDBvMGpyK1A3T3Nxcm8vTlpOMGV3Y0ZFbGovYXI0ZytnQzE2cFUrMWtGMktENjR4UW0vd3lrT0kyMVlECnBzR2VncXpqcTlESEswNlVObzVZZEJNQWVDeFRBdXZzZVQ2YWdyYXk5Zjd2N1JmajIrZFBMQ3NxOTUyM1h2bUwKM01wSHhNc0lEcE00ZXFycVpQRjNsUkFjQmswVTJFZ084SXc1cWt5RVg5YXBvZ2NwOTRjS1A3OFcvN1h3clFXRAoxVDl4ajBJcWhZaTRSN2FaTlNwV1FlOFpobmtxZlU1ZldGUEtXUXVrdXRCaThpNmVRWUg1RjJ4WjcrUzdybFI3ClM5ekh4MFRaUDI5YmMweWpnZCtiY2hKTWlJazc1OHJ3VFNhVlM3RVJBM1MwN2V0TVEwMlpzTWVydGpJZHA5YWYKakQyMUR5a0NnWUVBenE4WVE1dEp4Rjh5dUc2WGYva3kyK0NPY3VjdzRhdGwxQmljTnRlOW82Y0dpK051NzkwZwptUFVEbTRHbDA0dHdmOG5jdG9ncXNBT2pSRXhvbXNKcll5aU1yWGR3QTd1eElDT3ZsMHljaHRWREZMdzJ4MUlYCnlHWGdCaEozMkR5N2hwcjdveUNQcnRCWWNrUjZpRjl5WHBMWFo5eE42Zk15bEVqVUxSc0FMM01DZ1lFQXlZZFkKdXI0cExOOTZGalZoQmNKVGh0YnorVnpVblVKSlhBYjJMUEcxWGk3WXZHRmdmYjlpZTQrVXJ5RVExV2NRRG1vRwpUUlA3aVR1RmhmakVObGNhN1ZKRW1qdlRiNkk1ektwdUIyQjNoMDBhN3VXYk1XMGd6L0x1MTF2cU1HUkg4c2xDClAvUlFHQ2M5aTBObTljNTFZaWJ6WTlFMzFiVlAzVXNhcEU1NHpxMENnWUVBdlZIWHVQM0NlVlQyUWNoVGo4NjEKVG9FSUdxbzR0VTNwelhqcGhyYmhwOGswRHVrNlVnN01jQzltcVlmOVhLUUtYWk9MVDh1MHhsdmVybzRLOTArRgpUR1AxVUdQcVFCRXA4eFdkSHNyM1NlNkpMcklrdnprc1BjMUxnbVJpVUxsNDBKaWdUVkZqSzY3K2hWVENwSzVCCk5lM3R6OTRWcEdtM2QrcXFKOUxtdlk4Q2dZRUFtQlVFdDhCanNGSmhmcnIvb2VuNVFLdWNhQlZPK2ZJWkRGTFEKbWpBNXozNkkzdmlaYWF2eE5RK3dnOHp2T0N4VHFKMElia2hqTFRmMjFwaFo4aXdmelBLbGhNTWJGNGFVR2NpUAp5ZzlaaElpQ2g4Qk1NcXVJOUlUL0N4UjVFZFhMbWdPWmRFdjUyWkJiV0dvZ0crV1hIZUFKRXMzRFZncEMzOXdhCm1kNENPdTBDZ1lFQWo3S1ZHNW9HUjVDUUl0RXhsM2s1YlRqUWtoV096YWJYY2x3UlRmYmhiRmlFd0YxYnhNdzgKQ0luRWhkVXBoNGdYV0UzU0NXd2FLTWlRYzBuM0x4VFdRbmRKR3dJK2JKUkpXcEZCeVo4QU8rSnlDdit1cFErbwozejdha3NteG81aDlBcnBtQWV0eDNxdksrcEZyN2hydFV4TXYzQlFEUld0TFgvd1FYc2JzQjUwPQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=4,25
+              sleep 38,3986
+          done;39,4009
+          done;44,4173
+          chmod 45,4189
+          chown git 46,4212
+
+tmp/secret-example-secret.json,0
+
+tmp/secret-example-pod.yaml,0
+
+tmp/secret-example-pod.json,0
